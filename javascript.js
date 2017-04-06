@@ -17,8 +17,6 @@ $(document).ready(function () {
             url: Weather,
             dataType: "jsonp",
             success: function (data) {
-                // get all the information
-
                 console.log(data);
                 var location = data['location']['city'];
                 var tempf = data['current_observation']['temp_f'];
@@ -27,23 +25,22 @@ $(document).ready(function () {
                 var desc = data['current_observation']['weather'];
 
                 $('#location').html(location);
-
                 $('#temp').html(tempf);
-                $('#units').html("&#8451;");
 
-                /*$units.on("click", function () {
-                    if (units === "C") {
-                        $temp.html(tempf.toFixed(1));
-                        units = "F";
-                        $units.html("F");
+                var units = "&#8451;";
+                $('#temp').html(tempc.toFixed(1));
+                $('#units').html(units);
+                $('#units').on("click", function () {
+                    if (units == "&#8451;") {
+                        $('#temp').html(tempf.toFixed(1));
+                        units = "&#8457;";
+                        $('#units').html("&#8457;");
                     } else {
-                        $temp.html(tempc.toFixed(1));
-                        units = "C";
-                        $units.html("C");
+                        $('#temp').html(tempc.toFixed(1));
+                        units = "&#8451;";
+                        $('#units').html("&#8451;");
                     }
-                });*/
-
-
+                });
 
                 $('#desc').html(desc);
                 $('#img').attr('src', img);
@@ -55,19 +52,3 @@ $(document).ready(function () {
         alert("That's weird! We couldn't find you!");
     }
 });
-
-/*
-
-$("#temp").onclick(function tempChange() {
-    switch (degreeUnit) {
-        case ("&#8451;"):
-            degreeUnit = "&#8451;";
-            temperature.innerHTML = tempf + degreeUnit; // Set imperial state.
-            break;
-        case ("&#8457;"):
-            degreeUnit = "&#8451;";
-            temperature.innerHTML = tempc + degreeUnit; // Set metric state.
-            break;
-    }
-});
-*/
